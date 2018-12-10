@@ -56,6 +56,17 @@ input[type=text]:focus{
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+footer{
+  color: #FFF;
+  padding: 5px 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  background-color: #8063FA;
+  border-top: solid 2px #D4CAFF;
+  letter-spacing: 2px;
+}
+
 input[type=submit] {
   display: block;
   font-size: .6em;
