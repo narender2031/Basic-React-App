@@ -1,4 +1,4 @@
-import * as PlayerActionType from '../actiontypes/player'
+import * as PlayerActionType from '../actiontypes/player';
 
 const initialState = {
   players : [
@@ -60,8 +60,8 @@ export default function player(state = initialState, action) {
 
     case PlayerActionType.REMOVE_PLAYER: {
       const removePlayerList = [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
+        ...state.players.slice(0, action.index),
+        ...state.players.slice(action.index + 1)
       ];
       return {
         ...state,
