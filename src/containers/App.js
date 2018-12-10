@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux'
 // import PropTypes from 'prop-types'
-import * as PlayerActionCreators from '../actions/player'
+import * as PlayerActionCreators from '../redux/actions/player'
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Player from '../components/Player';

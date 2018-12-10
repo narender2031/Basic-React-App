@@ -57,7 +57,6 @@ export default function player(state = initialState, action) {
       }
     }
     
-
     case PlayerActionType.REMOVE_PLAYER: {
       const removePlayerList = [
         ...state.players.slice(0, action.index),
@@ -70,7 +69,6 @@ export default function player(state = initialState, action) {
       
     }
     
-
     case PlayerActionType.UPDATE_PLAYER_SCORE:{
       const updatePlayrList = state.players.map((player, index) => {
         if(index === action.index){
