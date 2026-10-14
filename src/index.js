@@ -1,14 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from  'react-redux'
-import { createStore } from 'redux'
-import PlayerReducer from './redux/reducers/player.js'
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from './redux/reducers'
+import notificationMiddleware from './redux/middleware/notification'
 import App from './containers/App';
 import './index.css';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
-    PlayerReducer,
-    window.devToolsExtension && window.devToolsExtension()
+    rootReducer,
+    composeEnhancers(applyMiddleware(notificationMiddleware()))
 )
 
 render(

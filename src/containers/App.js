@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux'
 // import PropTypes from 'prop-types'
 import * as PlayerActionCreators from '../redux/actions/player'
+import * as NotificationActionCreators from '../redux/actions/notification'
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Player from '../components/Player';
@@ -22,15 +23,17 @@ class App extends Component {
   }
 
   render() {
-    const {dispatch, players, selectedPlayerIndex} = this.props;
+    const {dispatch, players, selectedPlayerIndex, notifications} = this.props;
     const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer, dispatch);
     const removePlayer = bindActionCreators(PlayerActionCreators.removePlayer, dispatch);
     const updatePlayerScore = bindActionCreators(PlayerActionCreators.updatePlayerScore, dispatch);
     const selectPlayer = bindActionCreators(PlayerActionCreators.selectPlayer, dispatch);
+    const markNotificationRead = bindActionCreators(NotificationActionCreators.markNotificationRead, dispatch);
+    const markAllNotificationsRead = bindActionCreators(NotificationActionCreators.markAllNotificationsRead, dispatch);
     const highScore = this.getHigthScore(players);
 
     let selectedPlayer;
-    if(selectedPlayerIndex != -1){
+    if(selectedPlayerIndex !== -1){
       selectedPlayer = players[selectedPlayerIndex]
     }
 
@@ -51,6 +54,9 @@ class App extends Component {
         <Header  title ="My scoreboard" 
           players={players}
           isHighScore={highScore}
+          notifications={notifications}
+          markNotificationRead={markNotificationRead}
+          markAllNotificationsRead={markAllNotificationsRead}
         />
           { playerComponents }
          <AddPlayerForm addPlayer={addPlayer}/>
@@ -63,8 +69,9 @@ class App extends Component {
 
 const MapStateToProp = state => (
   {
-    players: state.players,
-    selectedPlayerIndex: state.selectedPlayerIndex
+    players: state.player.players,
+    selectedPlayerIndex: state.player.selectedPlayerIndex,
+    notifications: state.notification.items
   }
 )
 export default connect(MapStateToProp)(App)
